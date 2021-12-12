@@ -6,6 +6,7 @@ const { catchErrors } = require('../handlers/errorHandlers')
 router.get('/', catchErrors(storeController.getStores))
 router.get('/stores', catchErrors(storeController.getStores))
 router.get('/add', storeController.addStore)
+router.get('/stores/:id/edit', catchErrors(storeController.editStore))
 // we wrap the call to createStore in catchErrors
 // which is in the handlers helper functions directory
 // the functionality within catchErrors allows us to catch errors
@@ -14,6 +15,7 @@ router.get('/add', storeController.addStore)
 // we don't have to handle errors in the controllers anywhere now
 // saves us from using duplicate code
 router.post('/add', catchErrors(storeController.createStore));
+router.post('/add/:id', catchErrors(storeController.updateStore));
 
 router.get('/reverse/:name', (req, res) =>
 {
