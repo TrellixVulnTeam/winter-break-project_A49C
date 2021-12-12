@@ -23,3 +23,11 @@ exports.createStore = async (req, res) => {
     res.redirect(`/store/${store.slug}`)
     console.log('saved store into DB')
 }
+
+exports.getStores = async (req, res) => {
+    const stores = await Store.find();
+    // since the key and value that we want to pass below for stores is the same,
+    // we can eliminate having to show the value utilizing ES6 by just putting the 
+    // name that both key and value share, which is stores in this case
+    res.render('stores', {title : 'Stores', stores })
+}
