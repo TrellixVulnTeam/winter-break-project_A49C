@@ -38,6 +38,8 @@ exports.editStore = async (req, res) => {
 }
 
 exports.updateStore = async (req, res) => {
+    // casts location to type Point on update
+    req.body.location.type = 'Point';
     // runValidators, make sure that the validation that is required to create a store is also used to update one
     const store = Store.findOneAndUpdate({ _id : req.params.id }, req.body, {new : true, runValidators : true}).exec();
     req.flash('success', `Successfully updated ${store.name} <a href="/stores/${store.slug}">View Store </a>`);

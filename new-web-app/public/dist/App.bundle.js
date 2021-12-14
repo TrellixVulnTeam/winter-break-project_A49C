@@ -16,6 +16,10 @@ function autocomplete(input, latInput, lngInput) {
     var place = dropdown.getPlace();
     latInput.value = place.geometry.location.lat();
     lngInput.value = place.geometry.location.lng();
+  }); // if enter is used on address field don't submit form
+
+  input.on('keydown', function (e) {
+    if (e.keyCode === 13) e.preventDefault();
   });
 }
 
