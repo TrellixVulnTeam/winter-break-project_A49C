@@ -4,6 +4,15 @@ mixin storeForm(store = {})
     input(type="text" name="name" value=store.name)
     label(for="description") Description
     textarea(name="description")= store.description
+    label(for="address") Location's Address
+    // this line: app.use(express.urlencoded({ extended: true })); in app.js
+    // allows us to use inputs that have nested data in them, for example, the following input
+    // is location.address, so we need to access the address of the location essentially
+    input(type="text" id="address" name="location[address]" value=(store.location && store.location.address))
+    label(for='lng') Address Longitude 
+    input(type='text' id='lng' name='location[coordinates][0]' value=(store.location && store.location.coordinates[0]) required)
+    label(for='lat') Address Latitude 
+    input(type='text' id='lat' name='location[coordinates][1]' value=(store.location && store.location.coordinates[1]) required)
     - const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegatarian', 'Licensed']
     - const tags = store.tags || []
     ul.tags
